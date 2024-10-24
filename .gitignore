@@ -1,1 +1,4 @@
-pra5
+env
+project/__pycache__
+project/.pytest_cache
+project/tests/__pycache__
