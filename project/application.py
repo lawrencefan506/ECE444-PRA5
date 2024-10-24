@@ -3,7 +3,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 import pickle
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 ### model loading ###
 loaded_model = None
@@ -15,16 +15,16 @@ with open('count_vectorizer.pkl', 'rb') as vd:
     vectorizer = pickle.load(vd)
 
 #how to use model to predict
-prediction = loaded_model.predict(vectorizer.transform(["This is a fake news"]))[0]
+#prediction = loaded_model.predict(vectorizer.transform(["This is a fake news"]))[0]
 
 # output will be 'Fake' if fake, 'REAL' if real
 
 
-@app.route('/')
+@application.route('/')
 def index():
     return "This is a fake news detector"
 
-@app.route('/predict', methods=['POST'])
+@application.route('/predict', methods=['POST'])
 def predict():
     try:
         # Get the text data from the post request
@@ -45,4 +45,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run()
+    application.run()
